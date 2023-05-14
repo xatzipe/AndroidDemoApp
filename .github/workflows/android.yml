@@ -10,8 +10,8 @@ on:
 jobs:
   build:
 
-#    runs-on: ubuntu-latest
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+#    runs-on: self-hosted
 
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
@@ -33,3 +33,5 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x test
       - run: echo "Build status report=${{ job.status }}."
+      - name: Run unit tests
+        run: ./gradlew test
