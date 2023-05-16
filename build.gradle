@@ -23,7 +23,7 @@ jacocoTestReport {
     }
 }
 
-sonarcube {
+sonarqube {
     properties {
         property "sonar.organization", "xatzipe"
         property "sonar.projectKey", "xatzipe_AndroidDemoApp"
