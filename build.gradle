@@ -25,9 +25,11 @@ jacocoTestReport {
 
 sonarqube {
     properties {
-        property "sonar.organization", "xatzipe"
+
         property "sonar.projectKey", "xatzipe_AndroidDemoApp"
+        property "sonar.organization", "xatzipe"
         property "sonar.host.url", "https://sonarcloud.io"
+
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.sources", "src/main/java"
         property "sonar.binaries", "build"
@@ -35,6 +37,6 @@ sonarqube {
         property "sonar.coverage.jacoco.xmlReportPaths", "app/build/jacoco/jacocoTestReport/jacocoTestReport.xml"
         property "sonar.tests", ["src/test/java"]
         property "sonar.test.inclusions", "**/*Test*/**"
-        property "sonar.login", "6c0f5cc072bc69737f630a204fab2ffcd1adb8b1"
+
     }
 }
