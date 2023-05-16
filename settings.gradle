@@ -10,13 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() {
-            content {
-                includeGroup("org.jetbrains.anko")
-                includeGroup("com.budiyev.android")
-            }
-        }
     }
 }
 rootProject.name = "AndroidDemoApp"
 include ':app'
+include ':mylibrary'
