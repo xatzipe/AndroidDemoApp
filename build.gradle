@@ -11,32 +11,11 @@ plugins {
     id 'com.android.library' version '7.4.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
     id 'androidx.navigation.safeargs' version '2.5.2' apply false
-    id 'jacoco'
     id "org.sonarqube" version '3.5.0.2730'
-}
-
-apply plugin: 'java'
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-    }
 }
 
 sonarqube {
     properties {
-
-//        property "sonar.projectKey", "xatzipe_AndroidDemoApp"
-//        property "sonar.organization", "xatzipe"
-//        property "sonar.host.url", "https://sonarcloud.io"
-
-        property "sonar.sourceEncoding", "UTF-8"
-        property "sonar.sources", "src/main/java"
-        property "sonar.binaries", "build"
-        property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.coverage.jacoco.xmlReportPaths", "app/build/jacoco/jacocoTestReport/jacocoTestReport.xml"
-        property "sonar.tests", ["src/test/java"]
-        property "sonar.test.inclusions", "**/*Test*/**"
-
+        property "sonar.sources.exclusions", ["src/test/**", "src/androidTest/**"]
     }
 }

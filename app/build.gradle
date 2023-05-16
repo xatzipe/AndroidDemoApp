@@ -5,8 +5,6 @@ plugins {
     id 'kotlin-kapt'
 }
 
-apply from: "$project.rootDir/jacoco.gradle"
-
 android {
     namespace 'com.github.xatzipe.androiddemoapp'
     compileSdk 33
