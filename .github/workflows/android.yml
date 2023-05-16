@@ -35,3 +35,5 @@ jobs:
       - run: echo "Build status report=${{ job.status }}."
       - name: Run unit tests
         run: ./gradlew test
+      - name: Code Coverage
+        run: ./gradlew test jacocoTestReport sonarqube
