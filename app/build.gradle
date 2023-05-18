@@ -6,7 +6,7 @@ plugins {
     id 'org.jetbrains.dokka'
     id 'jacoco'
 }
-
+apply from: "$project.rootDir/jacoco.gradle"
 android {
     namespace 'com.github.xatzipe.androiddemoapp'
     compileSdk 33
@@ -68,9 +68,7 @@ dependencies {
 
     implementation 'androidx.compose.material3:material3'
 
-//    testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'junit:junit:4.13.2'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
