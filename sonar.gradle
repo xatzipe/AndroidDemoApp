@@ -1,0 +1,9 @@
+apply plugin: "org.sonarqube"
+
+//sonar {
+//    properties {
+//        // Insert other SonarQube properties here
+//        property 'sonar.projectName', '-------PROJECT NAME-------'
+//        property 'sonar.projectKey', '-------PROJECT KEY-------'
+//    }
+//}
