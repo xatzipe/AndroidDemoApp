@@ -9,6 +9,9 @@ class DocRequest(val docType: String,
 data class DocItem(val namespace: String,
                    val elementIdentifier: String)
 
+/**
+ *
+ */
 class ReaderAuth(val readerAuth: ByteArray,
                  val readerSignIsValid: Boolean,
                  val readerCertificateChain: List<X509Certificate>,
