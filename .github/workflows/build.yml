@@ -36,7 +36,7 @@ jobs:
       - name: Run unit tests
         run: ./gradlew test
       - name: Code Coverage
-        run: ./gradlew test codeCoverageReport --stacktrace
+        run: ./gradlew test codeCoverageReport --info
 
 
 #name: SonarCloud
