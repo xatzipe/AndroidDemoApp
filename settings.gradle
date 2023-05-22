@@ -12,6 +12,14 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter()
+        maven {
+            name = "GithubPackages"
+            url = "https://maven.pkg.github.com/xatzipe/AndroidDemoApp"
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("JAVA_TOKEN")
+            }
+        }
     }
 }
 rootProject.name = "AndroidDemoApp"
