@@ -14,6 +14,7 @@ plugins {
     id 'jacoco'
     id "org.sonarqube" version "4.0.0.2929"
     id 'org.jetbrains.dokka' version "1.8.10"
+    id 'maven-publish'
 }
 
 subprojects {
@@ -44,9 +45,27 @@ subprojects {
         }
     }
 
-//    tasks.withType(Test).configureEach {
-//        useJUnitPlatform()
-//    }
+    project(':mylibrary') {
+        apply plugin: 'maven-publish'
+//        apply plugin: 'java'
+//        publishing {
+//            publications {
+//                release(MavenPublication) {
+//                    groupId = 'com.github.xatzipe'
+//                    artifactId = 'mylibrary'
+//                    version = '1.1'
+//                }
+//            }
+//        }
+        publishing {
+            publications {
+                gpr(MavenPublication) {
+                    artifactId project.name
+                    artifact jar
+                }
+            }
+        }
+    }
 }
 
 apply from: "$project.rootDir/sonar.gradle"
