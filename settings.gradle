@@ -17,7 +17,7 @@ dependencyResolutionManagement {
             url = "https://maven.pkg.github.com/xatzipe/AndroidDemoApp"
             credentials {
                 username = System.getenv("USERNAME")
-                password = System.getenv("JAVA_TOKEN")
+                password = System.getenv("TOKEN")
             }
         }
     }
