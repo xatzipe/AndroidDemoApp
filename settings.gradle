@@ -4,14 +4,6 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         jcenter()
-        maven {
-            name = "GithubPackages"
-            url = "https://maven.pkg.github.com/xatzipe/AndroidDemoApp"
-            credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("TOKEN")
-            }
-        }
     }
 }
 dependencyResolutionManagement {
@@ -20,14 +12,6 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter()
-        maven {
-            name = "GithubPackages"
-            url = "https://maven.pkg.github.com/xatzipe/AndroidDemoApp"
-            credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("TOKEN")
-            }
-        }
     }
 }
 rootProject.name = "AndroidDemoApp"
