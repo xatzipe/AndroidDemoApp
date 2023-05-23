@@ -14,17 +14,11 @@ plugins {
     id 'jacoco'
     id "org.sonarqube" version "4.0.0.2929"
     id 'org.jetbrains.dokka' version "1.8.10"
-    id 'maven-publish'
 }
 
 subprojects {
     apply plugin: 'org.sonarqube'
 //    apply from: "$project.rootDir/sonar.gradle"
-//    sonar {
-//        properties {
-//            property 'sonar.coverage.jacoco.xmlReportPaths', "$projectDir.parentFile.path/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
-//        }
-//    }
 
     sonar {
         properties {
@@ -42,28 +36,6 @@ subprojects {
             property "sonar.junit.reportPaths", "**/test-results/**/*.xml"
             property "sonar.coverage.jacoco.xmlReportPaths", "**/reports/**/codeCoverageReport/**/codeCoverageReport.xml"
             property "sonar.coverage.exclusions", "${coverageExclusions.join(', ')}"
-        }
-    }
-
-    project(':mylibrary') {
-        apply plugin: 'maven-publish'
-//        apply plugin: 'java'
-//        publishing {
-//            publications {
-//                release(MavenPublication) {
-//                    groupId = 'com.github.xatzipe'
-//                    artifactId = 'mylibrary'
-//                    version = '1.1'
-//                }
-//            }
-//        }
-        publishing {
-            publications {
-                gpr(MavenPublication) {
-                    artifactId project.name
-                    artifact jar
-                }
-            }
         }
     }
 }
