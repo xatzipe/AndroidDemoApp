@@ -61,14 +61,14 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.xatzipe'
                 artifactId = 'mylibrary'
-                version = '1.7'
+                version = '1.9'
             }
 
             debug(MavenPublication) {
                 from components.debug
                 groupId = 'com.github.xatzipe'
                 artifactId = 'mylibrary'
-                version = '1.7'
+                version = '1.9'
             }
         }
 
