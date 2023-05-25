@@ -16,33 +16,33 @@ plugins {
     id 'org.jetbrains.dokka' version "1.8.10"
 }
 
-subprojects {
-    beforeEvaluate {
-        apply plugin: 'org.sonarqube'
-//    apply from: "$project.rootDir/sonar.gradle"
+//subprojects {
+//    beforeEvaluate {
+//        apply plugin: 'org.sonarqube'
+////    apply from: "$project.rootDir/sonar.gradle"
+//
+//        sonar {
+//            properties {
+//                property "sonar.tests", "src/test/java"
+//                property "sonar.test.inclusions", "**/*Test*/**"
+//                property "sonar.sourceEncoding", "UTF-8"
+//                property "sonar.sources", "src/main/java"
+//                property "sonar.exclusions", '**/*Test*/**,' +
+//                        'build/**' +
+//                        '*.json,' +
+//                        '**/*test*/**,' +
+//                        '**/.gradle/**,' +
+//                        '**/R.class'
+//                property "sonar.java.coveragePlugin", "jacoco"
+//                property "sonar.junit.reportPaths", "**/test-results/**/*.xml"
+//                property "sonar.coverage.jacoco.xmlReportPaths", "**/reports/**/codeCoverageReport/**/codeCoverageReport.xml"
+//                property "sonar.coverage.exclusions", "${coverageExclusions.join(', ')}"
+//            }
+//        }
+//    }
+//}
 
-        sonar {
-            properties {
-                property "sonar.tests", "src/test/java"
-                property "sonar.test.inclusions", "**/*Test*/**"
-                property "sonar.sourceEncoding", "UTF-8"
-                property "sonar.sources", "src/main/java"
-                property "sonar.exclusions", '**/*Test*/**,' +
-                        'build/**' +
-                        '*.json,' +
-                        '**/*test*/**,' +
-                        '**/.gradle/**,' +
-                        '**/R.class'
-                property "sonar.java.coveragePlugin", "jacoco"
-                property "sonar.junit.reportPaths", "**/test-results/**/*.xml"
-                property "sonar.coverage.jacoco.xmlReportPaths", "**/reports/**/codeCoverageReport/**/codeCoverageReport.xml"
-                property "sonar.coverage.exclusions", "${coverageExclusions.join(', ')}"
-            }
-        }
-    }
-}
-
-apply from: "$project.rootDir/sonar.gradle"
+//apply from: "$project.rootDir/sonar.gradle"
 
 //// See here for more info: https://docs.gradle.org/6.4-rc-1/samples/sample_jvm_multi_project_with_code_coverage.html
 ////
