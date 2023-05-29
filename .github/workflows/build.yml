@@ -30,10 +30,8 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-
       - name: Run lint
         run: ./gradlew lint
-
       - name: Run unit tests
         run: ./gradlew test coverageReport
 
