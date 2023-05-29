@@ -1,6 +1,6 @@
 apply plugin: "org.sonarqube"
 
-sonarqube {
+sonar {
     properties {
         property "sonar.projectKey", "xatzipe_AndroidDemoApp"
         property "sonar.organization", "xatzipe"
