@@ -30,9 +30,9 @@ subprojects {
         }
     }
 
-    tasks.withType(Test).configureEach {
-        useJUnitPlatform()
-    }
+//    tasks.withType(Test).configureEach {
+//        useJUnitPlatform()
+//    }
 }
 
 apply from: "$project.rootDir/sonar.gradle"
