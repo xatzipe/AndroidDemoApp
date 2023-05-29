@@ -14,6 +14,7 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
+      contents: write # only for delete-branch option
       issues: write
       pull-requests: write
 
@@ -25,3 +26,4 @@ jobs:
         stale-pr-message: 'This pull request has been marked as stale'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
+        days-before-close: 30
