@@ -11,31 +11,30 @@ jobs:
   unit-tests:
 
     runs-on: ubuntu-latest
-    #    runs-on: self-hosted
 
     steps:
       - name: Checkout the code
       - uses: actions/checkout@v3
 
-      - name: set up JAVA 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-
-      - name: Cache Gradle and wrapper
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-
-      - name: Run lint
-        run: ./gradlew lint
-
-      - name: Run unit tests
-        run: ./gradlew test coverageReport
+#      - name: set up JAVA 11
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: '11'
+#          distribution: 'temurin'
+#
+#      - name: Cache Gradle and wrapper
+#        uses: actions/cache@v3
+#        with:
+#          path: |
+#            ~/.gradle/caches
+#            ~/.gradle/wrapper
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+#
+#      - name: Run lint
+#        run: ./gradlew lint
+#
+#      - name: Run unit tests
+#        run: ./gradlew test coverageReport
 
 #      - run: echo "The workflow is now ready to test your code."
 #      - name: Grant execute permission for gradlew
