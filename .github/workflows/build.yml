@@ -37,8 +37,10 @@ jobs:
         run: ./gradlew lint
 
       - name: Run unit tests
-        run: ./gradlew test codeCoverageReport
+        run: ./gradlew test
 
+      - name: Code Coverage
+        run: ./gradlew codeCoverageReport
 #      - run: echo "The workflow is now ready to test your code."
 #      - name: Grant execute permission for gradlew
 #        run: chmod +x gradlew
