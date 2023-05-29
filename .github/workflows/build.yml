@@ -22,16 +22,16 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-#      - name: Cache Gradle and wrapper
-#        uses: actions/cache@v3
-#        with:
-#          path: |
-#            ~/.gradle/caches
-#            ~/.gradle/wrapper
-#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-#
-#      - name: Run lint
-#        run: ./gradlew lint
+      - name: Cache Gradle and wrapper
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+
+      - name: Run lint
+        run: ./gradlew lint
 #
 #      - name: Run unit tests
 #        run: ./gradlew test coverageReport
