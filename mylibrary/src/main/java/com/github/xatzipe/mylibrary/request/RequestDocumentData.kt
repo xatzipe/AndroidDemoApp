@@ -9,7 +9,16 @@ data class RequestDocumentData(
      *
      */
     val docType: String,
+    /**
+     *
+     */
     val docName: String,
+    /**
+     *
+     */
     val userAuthentication: Boolean,
+    /**
+     *
+     */
     val docRequest: DocRequest
 )
