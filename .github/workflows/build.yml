@@ -40,36 +40,36 @@ jobs:
         run: ./gradlew test
 
 
-android-tests:
-  runs-on: macos-latest
+  android-tests:
+    runs-on: macos-latest
 
-  needs: unit-tests
-  steps:
-    - name: Checkout the code
-      uses: actions/checkout@v3
+    needs: unit-tests
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
 
-    - name: Setup JAVA 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: 11
-        distribution: 'temurin'
+      - name: Setup JAVA 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'temurin'
 
-    - name: Cache Gradle and wrapper
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+      - name: Cache Gradle and wrapper
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-    - name: Instrumentation Tests
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        api-level: 29
-        script: ./gradlew connectedAndroidTest
+      - name: Instrumentation Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedAndroidTest
 
 #      - name: Code Coverage
 #        run: ./gradlew codeCoverageReport
