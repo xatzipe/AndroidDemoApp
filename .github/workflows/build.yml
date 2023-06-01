@@ -75,13 +75,13 @@ jobs:
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
 
-      - name: Test with Gradle Wrapper
+      - name: Build with Gradle Wrapper & run sonar
         uses: gradle/gradle-build-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          arguments: test sonar --full-stacktrace
+          arguments: build sonar --full-stacktrace
 
 #      - name: Run tests
 #        env:
