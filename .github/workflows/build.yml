@@ -76,7 +76,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew test sonar --info
+        run: ./gradlew test sonar
 
 #      - name: Run Instrumentation Tests
 #        uses: reactivecircus/android-emulator-runner@v2
