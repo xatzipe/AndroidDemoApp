@@ -1,9 +1,0 @@
-apply plugin: "org.sonarqube"
-
-sonar {
-    properties {
-        // Insert other SonarQube properties here
-        property 'sonar.projectName', 'Android Demo App Gradle (multimodule with Jacoco code coverage)'
-        property 'sonar.projectKey', 'xatzipe_AndroidDemoApp'
-    }
-}
