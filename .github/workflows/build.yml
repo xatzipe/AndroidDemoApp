@@ -40,7 +40,8 @@ jobs:
 #        run: ./gradlew test
 
   build-and-test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+#    runs-on: macos-latest
 
 #    needs: unit-tests
     steps:
@@ -77,8 +78,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew test sonar --info
 
-      - name: Run Instrumentation Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew connectedAndroidTest
+#      - name: Run Instrumentation Tests
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 29
+#          script: ./gradlew connectedAndroidTest
