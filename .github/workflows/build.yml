@@ -42,7 +42,7 @@ jobs:
   build-and-test:
     runs-on: macos-latest
 
-#    needs: unit-tests
+    needs: unit-tests
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3

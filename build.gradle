@@ -43,12 +43,3 @@ subprojects {
         }
     }
 }
-
-tasks.register("codeCoverageReport", JacocoReport) {
-    subprojects { subproject ->
-        println "subproject: " + subproject
-        subproject.plugins.withType(JacocoPlugin).configureEach {
-            println
-        }
-    }
-}
