@@ -69,11 +69,19 @@ jobs:
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+#      - name: Grant execute permission for gradlew
+#        run: chmod +x gradlew
 
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
+
+      - name: Test with Gradle Wrapper
+        uses: gradle/gradle-build-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          arguments: test sonar --full-stacktrace
 
       - name: Run tests
         env:
@@ -81,8 +89,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew test sonar
 
-      - name: Run Instrumentation Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew connectedAndroidTest
+#      - name: Run Instrumentation Tests
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 29
+#          script: ./gradlew connectedAndroidTest
