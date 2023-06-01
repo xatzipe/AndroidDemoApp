@@ -4,10 +4,8 @@ plugins {
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
     id 'org.jetbrains.dokka'
-    id 'jacoco'
     id 'org.sonarqube'
 }
-apply from: "$project.rootDir/jacoco.gradle"
 
 android {
     namespace 'com.github.xatzipe.androiddemoapp'
