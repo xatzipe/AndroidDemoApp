@@ -53,11 +53,39 @@ dependencies {
     dokkaPlugin 'org.jetbrains.dokka:android-documentation-plugin:1.8.10'
 }
 
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        // For android libraries
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        // For pure kotlin libraries, in case you have them
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+tasks.register('dokkaHtmlJar', Jar.class) {
+    dependsOn(dokkaHtml)
+    from(dokkaHtml)
+    archiveClassifier.set("html-docs")
+}
+
+tasks.register('dokkaJavadocJar', Jar.class) {
+    dependsOn(dokkaJavadoc)
+    from(dokkaJavadoc)
+    archiveClassifier.set("javadoc")
+}
+
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 from components.release
+                artifact androidSourcesJar
+                artifact dokkaJavadocJar
+
                 groupId = 'com.github.xatzipe'
                 artifactId = 'mylibrary'
                 version = '1.10'
