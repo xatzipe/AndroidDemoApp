@@ -1,9 +1,0 @@
-//apply plugin: "org.sonarqube"
-//
-//sonar {
-//    properties {
-//        property "sonar.projectKey", "xatzipe_AndroidDemoApp"
-//        property "sonar.organization", "xatzipe"
-//        property "sonar.host.url", "https://sonarcloud.io"
-//    }
-//}
