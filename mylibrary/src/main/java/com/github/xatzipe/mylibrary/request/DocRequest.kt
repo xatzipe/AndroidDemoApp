@@ -1,6 +1,7 @@
 package com.github.xatzipe.mylibrary.request
 
 //this is a test remote pr
+import io.github.xatzipe.xtzplib.MyNewClass
 import java.security.cert.X509Certificate
 
 class DocRequest(val docType: String,
@@ -23,6 +24,7 @@ class ReaderAuth(val readerAuth: ByteArray,
                  val readerCertificatedIsTrusted: Boolean,
                  val readerCommonName: String) {
     fun isSuccess(): Boolean {
+        MyNewClass("test")
         return readerSignIsValid &&
                 readerCertificatedIsTrusted
     }

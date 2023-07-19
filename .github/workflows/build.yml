@@ -8,6 +8,31 @@ on:
   workflow_dispatch:
 
 jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout project source code
+        uses: actions/checkout@v3
+      - name: set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: "temurin"
+      - name: Cache Gradle and wrapper
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Build with Gradle Wrapper
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: test --full-stacktrace
   #  unit-tests:
   #
   #    runs-on: ubuntu-latest
@@ -39,49 +64,49 @@ jobs:
   #      - name: Run unit tests
   #        run: ./gradlew test
 
-  build-and-test:
-    #    runs-on: ubuntu-latest
-    runs-on: macos-latest
-
-    #    needs: unit-tests
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v3
-
-      - name: Setup JAVA 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: 11
-          distribution: 'temurin'
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Cache Gradle and wrapper
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-
-#      - name: Grant execute permission for gradlew
-#        run: chmod +x gradlew
-
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1
-
-      - name: Build with Gradle Wrapper & run sonar
-        uses: gradle/gradle-build-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          arguments: build sonar --full-stacktrace
+#  build-and-test:
+#    #    runs-on: ubuntu-latest
+#    runs-on: macos-latest
+#
+#    #    needs: unit-tests
+#    steps:
+#      - name: Checkout the code
+#        uses: actions/checkout@v3
+#
+#      - name: Setup JAVA 11
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: 11
+#          distribution: 'temurin'
+#
+#      - name: Cache SonarCloud packages
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.sonar/cache
+#          key: ${{ runner.os }}-sonar
+#          restore-keys: ${{ runner.os }}-sonar
+#
+#      - name: Cache Gradle and wrapper
+#        uses: actions/cache@v3
+#        with:
+#          path: |
+#            ~/.gradle/caches
+#            ~/.gradle/wrapper
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+#
+##      - name: Grant execute permission for gradlew
+##        run: chmod +x gradlew
+#
+#      - name: Validate Gradle Wrapper
+#        uses: gradle/wrapper-validation-action@v1
+#
+#      - name: Build with Gradle Wrapper & run sonar
+#        uses: gradle/gradle-build-action@v2
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#        with:
+#          arguments: build sonar --full-stacktrace
 
 #      - name: Run tests
 #        env:
