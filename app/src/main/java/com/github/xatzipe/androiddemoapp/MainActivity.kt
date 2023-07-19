@@ -53,5 +53,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     AndroidDemoAppTheme {
         Greeting("Android")
+        Greeting(BuildConfig.VERSION_NAME)
+        Greeting(BuildConfig.VERSION_CODE.toString())
     }
 }
