@@ -21,7 +21,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Distribute.setUpdateTrack(UpdateTrack.PRIVATE)
-        Distribute.setEnabled(true)
         AppCenter.start(
             application,
             BuildConfig.APPCENTER_APP_SECRET,
@@ -34,6 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    Analytics.trackEvent("Starting: ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
                     Greeting("Android")
                     Greeting(BuildConfig.VERSION_NAME)
                     Greeting(BuildConfig.VERSION_CODE.toString())
