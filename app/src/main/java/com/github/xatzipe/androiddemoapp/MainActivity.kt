@@ -11,10 +11,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.xatzipe.androiddemoapp.ui.theme.AndroidDemoAppTheme
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCenter.start(
+            application,
+            BuildConfig.APPCENTER_APP_SECRET,
+            Analytics::class.java, Crashes::class.java
+        )
         setContent {
             AndroidDemoAppTheme {
                 // A surface container using the 'background' color from the theme

@@ -10,7 +10,6 @@ plugins {
 android {
     namespace 'com.github.xatzipe.androiddemoapp'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.github.xatzipe.androiddemoapp"
         minSdk 28
@@ -22,6 +21,7 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        buildConfigField("String", "APPCENTER_APP_SECRET", "\"${System.getenv("APPCENTER_APP_SECRET")}\"")
     }
 
     buildTypes {
@@ -53,6 +53,9 @@ android {
 }
 
 dependencies {
+    def appCenterSdkVersion = '4.4.5'
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
     implementation project(':mylibrary')
 
