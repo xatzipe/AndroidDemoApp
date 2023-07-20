@@ -24,9 +24,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Analytics.trackEvent("Starting: ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
-                    Greeting("Android")
-                    Greeting(BuildConfig.VERSION_NAME)
-                    Greeting(BuildConfig.VERSION_CODE.toString())
+                    Greeting("Version: ${BuildConfig.VERSION_NAME}. Code: ${BuildConfig.VERSION_CODE}")
                 }
             }
         }
