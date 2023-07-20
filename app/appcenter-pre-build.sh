@@ -2,4 +2,4 @@
 
 
 echo "This is an App Center Pre-Build script. For more information on how to use App Center build scripts vist: https://docs.microsoft.com/en-us/appcenter/build/custom/scripts"
-echo "APP_SECRET_KEY: $APP_SECRET_KEY"
+echo "APPCENTER_APP_SECRET: $APPCENTER_APP_SECRET"
