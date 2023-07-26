@@ -1,0 +1,65 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Builds"
+  lane :build do
+    gradle(task: "app:clean app:build")
+  end
+
+  desc "Runs all the tests"
+  lane :app_test do
+    gradle(task: "app:test")
+  end
+
+  desc "Deploy to AppCenter"
+  lane :deployAppCenter do
+    gradle(task: "app:clean app:assembleRelease")
+
+    api_token = ENV["APPCENTER_API_TOKEN"]
+    owner_name = ENV["APPCENTER_OWNER_NAME"]
+    app_name = ENV["APPCENTER_APP_NAME"]
+    ## You can use the following line to provide a default value if the environment variable doesn't exist
+    # app_name ||= "appcenter-sampleapp-android"
+
+    appcenter_upload(
+      api_token: api_token,
+      owner_name: owner_name,
+      owner_type: "organization", # Default is user - set to organization for appcenter organizations
+      destinations: "*", # Default is 'Collaborators', use '*' for all distribution groups
+      app_name: app_name,
+      file: Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+      mapping: Actions.lane_context[SharedValues::GRADLE_MAPPING_TXT_OUTPUT_PATH],
+      notify_testers: true # Set to false if you don't want to notify testers of your new release or true if you do (default: `false`)
+    )
+  end
+
+  desc "Build Bundle"
+  lane :buildBundle do
+    gradle(
+      task: "app:bundle",
+      build_type: "release",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
+        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" => ENV["KEY_PASSWORD"]
+      }
+    )
+  end
+end
