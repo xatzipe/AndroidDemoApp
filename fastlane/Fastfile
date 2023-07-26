@@ -29,8 +29,8 @@ platform :android do
   desc "Deploy to AppCenter"
   lane :deployAppCenter do
     gradle(
-        task: "app:bundle",
-        build_type: "release",
+        task: "app:assemble",
+        build_type: "Release",
         print_command: false,
         properties: {
           "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],

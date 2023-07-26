@@ -80,8 +80,8 @@ jobs:
           ruby-version: 2.7.2
           bundler-cache: true
 
-#      - name: Run tests
-#        run: bundle exec fastlane android app_test
+      - name: Run tests
+        run: bundle exec fastlane android app_test
 
       - name: Decode Keystore File
         uses: timheuer/base64-to-file@v1
