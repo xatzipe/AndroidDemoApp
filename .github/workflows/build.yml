@@ -99,30 +99,30 @@ jobs:
       - name: Check android_keystore output file path contents
         run: ls -la ${{ steps.android_keystore.outputs.filePath }}
 
-#      - name: Define version code with offset
-#        env:
-#          RUN_NUMBER: ${{ github.run_number }}
-#          INITIAL_VERSION_CODE: 73
-#        run: |
-#          VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
-#          echo "version_code=$VERSION_CODE" >> $GITHUB_ENV
-#
-#      - name: Update version code
-#        uses: chkfung/android-version-actions@v1.1
-#        with:
-#          gradlePath: app/build.gradle
-#          versionCode: ${{ env.version_code }}
-#
-#      - name: Build & deploy Android release
-#        run: bundle exec fastlane android buildBundle deployAppCenter
-#        env:
-#          KEYSTORE_FILE: ${{ steps.android_keystore.outputs.filePath }}
-#          STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-#          KEY_ALIAS: ${{ secrets.KEY_ALIAS}}
-#          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-#          APPCENTER_API_TOKEN: ${{ secrets.APPCENTER_API_TOKEN }}
-#          APPCENTER_OWNER_NAME: ${{ secrets.APPCENTER_OWNER_NAME }}
-#          APPCENTER_APP_NAME: ${{ secrets.APPCENTER_APP_NAME }}
+      - name: Define version code with offset
+        env:
+          RUN_NUMBER: ${{ github.run_number }}
+          INITIAL_VERSION_CODE: 73
+        run: |
+          VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
+          echo "version_code=$VERSION_CODE" >> $GITHUB_ENV
+
+      - name: Update version code
+        uses: chkfung/android-version-actions@v1.1
+        with:
+          gradlePath: app/build.gradle
+          versionCode: ${{ env.version_code }}
+
+      - name: Build & deploy Android release
+        run: bundle exec fastlane android buildBundle deployAppCenter
+        env:
+          KEYSTORE_FILE: ${{ steps.android_keystore.outputs.filePath }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS}}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          APPCENTER_API_TOKEN: ${{ secrets.APPCENTER_API_TOKEN }}
+          APPCENTER_OWNER_NAME: ${{ secrets.APPCENTER_OWNER_NAME }}
+          APPCENTER_APP_NAME: ${{ secrets.APPCENTER_APP_NAME }}
 
 #  build-and-test:
 #    #    runs-on: ubuntu-latest
