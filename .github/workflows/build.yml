@@ -91,8 +91,7 @@ jobs:
           encodedString: ${{ secrets.KEYSTORE_FILE }}
 
       - name: Check keystore file contents
-        run: cat ${{ secrets.KEYSTORE_FILE }}
-
+        run: echo ${{ secrets.KEYSTORE_FILE }}
 
       - name: Check android_keystore output file path
         run: cat ${{ steps.android_keystore.outputs.filePath }}
