@@ -37,7 +37,7 @@ platform :android do
     appcenter_upload(
       api_token: api_token,
       owner_name: owner_name,
-      #owner_type: "organization", # Default is user - set to organization for appcenter organizations
+      owner_type: "user", # Default is user - set to organization for appcenter organizations
       destinations: "*", # Default is 'Collaborators', use '*' for all distribution groups
       app_name: app_name,
       file: Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
