@@ -90,11 +90,15 @@ jobs:
           fileName: "android_keystore.keystore"
           encodedString: ${{ secrets.KEYSTORE_FILE }}
 
-      - name: Check keystore file
-        run:
-          - cat ${{ secrets.KEYSTORE_FILE }}
-          - cat ${{ steps.android_keystore.outputs.filePath }}
-          - ls -la ${{ steps.android_keystore.outputs.filePath }}
+      - name: Check keystore file contents
+        run: cat ${{ secrets.KEYSTORE_FILE }}
+
+
+      - name: Check android_keystore output file path
+        run: cat ${{ steps.android_keystore.outputs.filePath }}
+
+      - name: Check android_keystore output file path contents
+        run: ls -la ${{ steps.android_keystore.outputs.filePath }}
 
 #      - name: Define version code with offset
 #        env:
