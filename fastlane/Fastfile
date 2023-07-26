@@ -28,8 +28,6 @@ platform :android do
 
   desc "Deploy to AppCenter"
   lane :deployAppCenter do
-    gradle(task: "app:clean app:assembleRelease")
-
     api_token = ENV["APPCENTER_API_TOKEN"]
     owner_name = ENV["APPCENTER_OWNER_NAME"]
     app_name = ENV["APPCENTER_APP_NAME"]
@@ -39,10 +37,10 @@ platform :android do
     appcenter_upload(
       api_token: api_token,
       owner_name: owner_name,
-      owner_type: "organization", # Default is user - set to organization for appcenter organizations
+      #owner_type: "organization", # Default is user - set to organization for appcenter organizations
       destinations: "*", # Default is 'Collaborators', use '*' for all distribution groups
       app_name: app_name,
-      file: Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+      file: Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
       mapping: Actions.lane_context[SharedValues::GRADLE_MAPPING_TXT_OUTPUT_PATH],
       notify_testers: true # Set to false if you don't want to notify testers of your new release or true if you do (default: `false`)
     )
