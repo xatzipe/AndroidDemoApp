@@ -115,6 +115,13 @@ jobs:
           APPCENTER_OWNER_NAME: ${{ secrets.APPCENTER_OWNER_NAME }}
           APPCENTER_APP_NAME: ${{ secrets.APPCENTER_APP_NAME }}
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: assets
+          path: |
+              ${{ github.workspace }}/app/build/outputs/bundle/release          
+
 #  build-and-test:
 #    #    runs-on: ubuntu-latest
 #    runs-on: macos-latest

@@ -39,14 +39,6 @@ Runs all the tests
 
 Deploy to AppCenter
 
-### android buildBundle
-
-```sh
-[bundle exec] fastlane android buildBundle
-```
-
-Build Bundle
-
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

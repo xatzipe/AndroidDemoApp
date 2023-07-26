@@ -40,18 +40,14 @@ platform :android do
         }
       )
 
-    api_token = ENV["APPCENTER_API_TOKEN"]
-    owner_name = ENV["APPCENTER_OWNER_NAME"]
-    app_name = ENV["APPCENTER_APP_NAME"]
-    ## You can use the following line to provide a default value if the environment variable doesn't exist
-    # app_name ||= "appcenter-sampleapp-android"
-
     appcenter_upload(
-      api_token: api_token,
-      owner_name: owner_name,
+      api_token: ENV["APPCENTER_API_TOKEN"],
+      owner_name: ENV["APPCENTER_OWNER_NAME"],
       owner_type: "user", # Default is user - set to organization for appcenter organizations
       destinations: "*", # Default is 'Collaborators', use '*' for all distribution groups
-      app_name: app_name,
+      destination_type: "group", # Default is 'group', use 'user' if you want to distribute to a user
+      mandatory_update: true, # Set to false if you want to allow users to choose when to update the app (default: `true`)
+      app_name: ENV["APPCENTER_APP_NAME"],
       file: Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
       mapping: Actions.lane_context[SharedValues::GRADLE_MAPPING_TXT_OUTPUT_PATH],
       notify_testers: true # Set to false if you don't want to notify testers of your new release or true if you do (default: `false`)

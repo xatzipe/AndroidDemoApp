@@ -14,7 +14,7 @@ android {
         applicationId "com.github.xatzipe.androiddemoapp"
         minSdk 28
         targetSdk 33
-        versionCode 13
+        versionCode 47
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -58,7 +58,8 @@ dependencies {
     implementation "com.microsoft.appcenter:appcenter-distribute:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
-    implementation project(':mylibrary')
+//    implementation project(':mylibrary')
+    implementation 'io.github.xatzipe:xtzplib:0.0.2-SNAPSHOT'
 
     implementation 'androidx.core:core-ktx:1.9.0'
 
