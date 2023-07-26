@@ -26,6 +26,21 @@ platform :android do
     gradle(task: "app:test")
   end
 
+  desc "Build Bundle"
+  lane :buildBundle do
+    gradle(
+      task: "app:bundle",
+      build_type: "release",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
+        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" => ENV["KEY_PASSWORD"]
+      }
+    )
+  end
+
   desc "Deploy to AppCenter"
   lane :deployAppCenter do
     api_token = ENV["APPCENTER_API_TOKEN"]
@@ -43,21 +58,6 @@ platform :android do
       file: Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
       mapping: Actions.lane_context[SharedValues::GRADLE_MAPPING_TXT_OUTPUT_PATH],
       notify_testers: true # Set to false if you don't want to notify testers of your new release or true if you do (default: `false`)
-    )
-  end
-
-  desc "Build Bundle"
-  lane :buildBundle do
-    gradle(
-      task: "app:bundle",
-      build_type: "release",
-      print_command: false,
-      properties: {
-        "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
-        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
-        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
-        "android.injected.signing.key.password" => ENV["KEY_PASSWORD"]
-      }
     )
   end
 end
