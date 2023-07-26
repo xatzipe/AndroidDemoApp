@@ -91,7 +91,10 @@ jobs:
           encodedString: ${{ secrets.KEYSTORE_FILE }}
 
       - name: Check keystore file
-        run: ls -la ${{ steps.android_keystore.outputs.filePath }}
+        run:
+          - cat ${{ secrets.KEYSTORE_FILE }}
+          - cat ${{ steps.android_keystore.outputs.filePath }}
+          - ls -la ${{ steps.android_keystore.outputs.filePath }}
 
 #      - name: Define version code with offset
 #        env:
