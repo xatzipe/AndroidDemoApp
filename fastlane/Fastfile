@@ -1,0 +1,56 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Builds"
+  lane :build do
+    gradle(task: "app:clean app:build")
+  end
+
+  desc "Runs all the tests"
+  lane :app_test do
+    gradle(task: "app:test")
+  end
+
+  desc "Deploy to AppCenter"
+  lane :deployAppCenter do
+    gradle(
+        task: "app:assemble",
+        build_type: "Release",
+        print_command: false,
+        properties: {
+          "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
+          "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+          "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+          "android.injected.signing.key.password" => ENV["KEY_PASSWORD"]
+        }
+      )
+
+    appcenter_upload(
+      api_token: ENV["APPCENTER_API_TOKEN"],
+      owner_name: ENV["APPCENTER_OWNER_NAME"],
+      owner_type: "user", # Default is user - set to organization for appcenter organizations
+      destinations: "*", # Default is 'Collaborators', use '*' for all distribution groups
+      destination_type: "group", # Default is 'group', use 'user' if you want to distribute to a user
+      mandatory_update: true, # Set to false if you want to allow users to choose when to update the app (default: `true`)
+      app_name: ENV["APPCENTER_APP_NAME"],
+      file: Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      mapping: Actions.lane_context[SharedValues::GRADLE_MAPPING_TXT_OUTPUT_PATH],
+      notify_testers: true # Set to false if you don't want to notify testers of your new release or true if you do (default: `false`)
+    )
+  end
+end

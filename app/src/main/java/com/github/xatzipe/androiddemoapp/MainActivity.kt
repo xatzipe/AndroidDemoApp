@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.xatzipe.androiddemoapp.ui.theme.AndroidDemoAppTheme
+import com.microsoft.appcenter.analytics.Analytics
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Analytics.trackEvent("Starting: ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
+                    Greeting("Version: ${BuildConfig.VERSION_NAME}. Code: ${BuildConfig.VERSION_CODE}!!")
                 }
             }
         }
@@ -42,5 +44,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     AndroidDemoAppTheme {
         Greeting("Android")
+        Greeting(BuildConfig.VERSION_NAME)
+        Greeting(BuildConfig.VERSION_CODE.toString())
     }
 }
