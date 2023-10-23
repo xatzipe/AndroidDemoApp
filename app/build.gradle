@@ -82,5 +82,5 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
-    dokkaPlugin 'org.jetbrains.dokka:android-documentation-plugin:1.8.20'
+    dokkaPlugin 'org.jetbrains.dokka:android-documentation-plugin:1.9.10'
 }
